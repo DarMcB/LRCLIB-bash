@@ -4,11 +4,13 @@ Fetches and saves synced lyrics from [lrclib.net](https://lrclib.net/) using a b
 
 ## Usage
 
-```Place script in the same directory as your mp3 files```
+* Place script in the same directory as your mp3 files
 
-```Run```
+* Run:
 
-```.lrc file is created for each file if there is not already an existing file with the same name```
+  ```bash run.sh```
+
+* .lrc file is created for each file if there is not already an existing file with the same name
 
 ## Dependencies
 
