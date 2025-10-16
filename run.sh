@@ -5,7 +5,6 @@ do
         then
                 echo "${f%.*}".lrc exists
         else
-                echo creating "${f%.*}".lrc;
 
                 #get Song Title
                 title="$(ffprobe -loglevel error -show_entries format_tags=title -of default=noprint_wrappers=1:nokey=1 "${f%.*}".mp3*)";
@@ -22,11 +21,13 @@ do
                 do
                         lyrics="$(curl -s https://lrclib.net/api/search?q=$artist+$title)"
                         formattedLyrics="$(jq -r .[$i].syncedLyrics <<< "$lyrics")"
-                        if [[ $lyrics == null ]]
+                        if [[ $formattedLyrics == null ]]
                         then
-                                echo "skipping null"
+                                echo skipping "${f%.*}".lrc
+                                break
                         else
                                 echo "$formattedLyrics" > "${f%.*}".lrc
+                                echo creating "${f%.*}".lrc;
                                 break
                         fi
                 done
